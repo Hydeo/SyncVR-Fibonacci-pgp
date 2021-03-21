@@ -40,6 +40,7 @@ const InsertFibo = (props) =>{
           id="standard-number"
           label="Index"
           type="number"
+          defaultValue={index}
           onChange={(event: React.ChangeEvent<HTMLInputElement>)=>{setIndex(Number(event.target.value))}}
           InputLabelProps={{
             shrink: true,

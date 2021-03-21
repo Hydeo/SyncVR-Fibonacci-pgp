@@ -15,8 +15,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const FiboItem = ({id,index,result,useMemoization,execTime}:FiboItemPropsInterface) =>{
+const FiboItem = ({id,index,result,useMemoization,execTime,creationDate}:FiboItemPropsInterface) =>{
   const classes = useStyles();
+  const date = (new Date(1616355020*1000)).toUTCString();
   return (
     <Grid item xs={6} sm={2} key={id}>
       <Paper className={classes.paper}>
@@ -24,10 +25,10 @@ const FiboItem = ({id,index,result,useMemoization,execTime}:FiboItemPropsInterfa
         <div>Index : {index}</div>
         <div>Memoization : {useMemoization ? "Yes" : "No"}</div>
         <div>Time : {execTime.toFixed(5)}</div>
+        <div>Date : {date}</div>
       </Paper>
     </Grid>
   );
 }
-
 
 export {FiboItem};
