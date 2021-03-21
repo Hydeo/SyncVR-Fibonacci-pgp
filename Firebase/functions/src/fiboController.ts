@@ -3,13 +3,13 @@ import {db} from "./config/firebase";
 import * as functions from "firebase-functions";
 import {Fibonacci} from "./fibonacci";
 
-type FiboEntry = {
+type FiboParams = {
   index : number,
   memoization : boolean
 }
 
 type Request = {
-  body : FiboEntry,
+  body : FiboParams,
   params : { fiboId : string }
 }
 
@@ -51,4 +51,21 @@ const addFiboEntry = async (req : Request, res : Response) => {
   }
 };
 
-export {addFiboEntry};
+const getAllFiboEntries = async (req: Request, res: Response) =>{
+  try {
+    const allFiboEntries : Fibonacci[] = [];
+    const query = await db.collection("fiboEntries").get();
+    query.forEach((doc:any)=>{
+      functions.logger.log(doc.data());
+      allFiboEntries.push(doc.data());
+
+    });
+    return res.status(200).json(allFiboEntries);
+  } catch (error) {
+    functions.logger.log(error);
+    return res.status(500).json(error.message);
+  }
+};
+
+
+export {addFiboEntry, getAllFiboEntries};

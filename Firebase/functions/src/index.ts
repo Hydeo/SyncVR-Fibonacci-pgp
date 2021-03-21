@@ -1,10 +1,10 @@
 import * as functions from "firebase-functions";
 import * as express from "express";
-import {addFiboEntry} from "./fiboController";
+import {addFiboEntry, getAllFiboEntries} from "./fiboController";
 
 const app = express();
 
-app.post("/fiboEntries", addFiboEntry);
-app.get("/", (req, res) => res.status(200).send("Express test"));
+app.post("/", addFiboEntry);
+app.get("/", getAllFiboEntries);
 
 exports.app = functions.https.onRequest(app);
