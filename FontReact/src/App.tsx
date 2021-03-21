@@ -11,6 +11,7 @@ import FiboEntryInterface from './models/fiboItemPropsInterface';
 import {getAllFiboEntries} from './services/fibonacciService';
 import {FiboItem} from './components/fiboItem';
 import {InsertFibo} from './components/insertFibo';
+import {FiboGraph} from './components/fiboGraph';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,8 +41,11 @@ function App() {
   return (
     <div className="App">
     <h1>SyncVR Assignement Paul Garcia Pelayo </h1>
-      
+        
         <InsertFibo callback={pushFiboEntry}/>
+
+        <FiboGraph fiboItems={fiboItems}/>
+
         <Grid container spacing={3}>
             {fiboItems.map((item: FiboEntryInterface,index)=>{
               return <FiboItem {...item} key={index}/>

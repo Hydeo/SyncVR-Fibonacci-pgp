@@ -78,6 +78,8 @@ const InsertFibo = (props) =>{
                 }
               }
               else{
+                //Bad, issue it in the date format, I should have stored the timestamp in the firebase DB
+                res.data.creationDate = {_seconds:new Date().getTime()/1000,_nanoseconds:0};
                 props.callback(res.data);
               }
             })
