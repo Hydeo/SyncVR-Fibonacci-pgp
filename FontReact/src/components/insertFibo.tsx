@@ -26,12 +26,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-const InsertFibo = () =>{
+const InsertFibo = (props) =>{
+
   const [index, setIndex] = useState(0);
   const [memoization, setMemoization] = useState(true);
   const [error,setError] = useState("");
+  const [loading,setLoading] = useState(false);
   const classes = useStyles();
-
 
   return (
     <Grid container direction="column" justify="center" alignItems="center" spacing={5}>
@@ -64,13 +65,20 @@ const InsertFibo = () =>{
           variant="contained"
           color="primary"
           onClick={() => { 
+            setLoading(true);
             postFiboEntry({index, memoization})
             .then((res)=>{
+              setLoading(false);
               if(res.status != "sucess"){
                  setError(res.message);
               }
               else{
-                setError("");
+                if(res.hasOwnProperty("message")){
+                  setError(res.message);
+                }
+                else{
+                  setError("Couldn't Compute 🙍");
+                }
                 //call parent function to update the state holding the fiboItems
               }
             })
@@ -78,7 +86,7 @@ const InsertFibo = () =>{
           }
           className={classes.button}
         >
-          Compute 🚀
+          Compute {loading ? "🏃" : "🚀"}
         </Button>
       </Grid>
     </Grid>
