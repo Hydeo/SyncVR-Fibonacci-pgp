@@ -5,10 +5,13 @@ import './App.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-import {getAllFiboEntires} from './services/fibonacci';
-import {FiboItem} from './components/fiboItem';
+
 //We have to build an interface to please TS and avoid type issues
 import FiboEntryInterface from './models/fiboEntry'; 
+import {getAllFiboEntires} from './services/fibonacci';
+import {FiboItem} from './components/fiboItem';
+import {InsertFibo} from './components/insertFibo';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,22 +38,9 @@ function App() {
   return (
     <div className="App">
     <h1>SyncVR Assignement Paul Garcia Pelayo </h1>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-          {process.env.REACT_APP_API_URL}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-
+      <Grid container justify="center">
+        <InsertFibo/>
+      </Grid>
       <Grid container spacing={3}>
             {list.map((item: FiboEntryInterface,index)=>{
               return <FiboItem {...item}/>
