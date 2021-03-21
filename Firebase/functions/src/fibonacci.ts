@@ -10,7 +10,7 @@ class Fibonacci {
   private useMemoization : boolean;
   private execTime : number;
   private creationDate: Date;
-  private memoizationArray : number[];
+  private memoizationArray : {[key: number] : number};
 
 
   /**
@@ -22,7 +22,7 @@ class Fibonacci {
     // TODO : Check if number is float
     this.index = index;
     this.useMemoization = useMemoization;
-    this.memoizationArray = [0, 1];
+    this.memoizationArray = {0: 0, 1: 1};
     this.creationDate = new Date();
     const t0 = performance.now();
     this.result = this.compute(this.index);
@@ -78,7 +78,8 @@ class Fibonacci {
     }
     /* If we are using memoization and have already computed the current
     index, we return it to avoid unecessary calculations */
-    if (this.useMemoization && this.memoizationArray.includes(index)) {
+    if (this.useMemoization &&
+        Object.prototype.hasOwnProperty.call(this.memoizationArray, index)) {
       return this.memoizationArray[index];
     }
 
