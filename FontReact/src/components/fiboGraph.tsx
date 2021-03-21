@@ -50,7 +50,7 @@ const FiboGraph = (props) =>{
   let frankeinFiboItem = Object.values(merge(avgFiboItemWithMemoization, avgFiboItemWithOutMemoization));
 
   return(
-    <Grid container style={{height:"20vw"}}>
+    <Grid container style={{height:"40vh"}}>
       <ResponsiveContainer>
         <LineChart data={frankeinFiboItem} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
           <Legend verticalAlign="top" height={36}/>
