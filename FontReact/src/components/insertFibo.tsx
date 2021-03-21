@@ -34,49 +34,53 @@ const InsertFibo = () =>{
 
 
   return (
-    <Grid item xs>
-      <TextField
-        id="standard-number"
-        label="Index"
-        type="number"
-        onChange={(event: React.ChangeEvent<HTMLInputElement>)=>{setIndex(Number(event.target.value))}}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        helperText={error}
-        error={error == "" ? false : true}
-      />
-
-      <FormControlLabel control={
-        <Checkbox
-            checked={memoization}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>)=>{setMemoization(event.target.checked)}}
-            name="checkedB"
-            color="primary"
-          />} 
-        label="Use Memoization"
-      />
-
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => { 
-          postFiboEntry({index, memoization})
-          .then((res)=>{
-            if(res.status != "sucess"){
-               setError(res.message);
+    <Grid container direction="column" justify="center" alignItems="center" spacing={5}>
+      <Grid item xs>
+        <TextField
+          id="standard-number"
+          label="Index"
+          type="number"
+          onChange={(event: React.ChangeEvent<HTMLInputElement>)=>{setIndex(Number(event.target.value))}}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          helperText={error}
+          error={error == "" ? false : true}
+        />
+      </Grid>
+      <Grid item xs>
+        <FormControlLabel control={
+          <Checkbox
+              checked={memoization}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>)=>{setMemoization(event.target.checked)}}
+              name="checkedB"
+              color="primary"
+            />} 
+          label="Use Memoization"
+        />
+      </Grid>
+      <Grid item xs>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => { 
+            postFiboEntry({index, memoization})
+            .then((res)=>{
+              if(res.status != "sucess"){
+                 setError(res.message);
+              }
+              else{
+                setError("");
+                //call parent function to update the state holding the fiboItems
+              }
+            })
             }
-            else{
-              setError("");
-              //call parent function to update the state holding the fiboItems
-            }
-          })
           }
-        }
-        className={classes.button}
-      >
-        Compute 🚀
-      </Button>
+          className={classes.button}
+        >
+          Compute 🚀
+        </Button>
+      </Grid>
     </Grid>
   );
 }

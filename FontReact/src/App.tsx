@@ -38,14 +38,13 @@ function App() {
   return (
     <div className="App">
     <h1>SyncVR Assignement Paul Garcia Pelayo </h1>
-      <Grid container justify="center">
+      
         <InsertFibo/>
-      </Grid>
-      <Grid container spacing={3}>
+        <Grid container spacing={3}>
             {list.map((item: FiboEntryInterface,index)=>{
               return <FiboItem {...item} key={index}/>
             })}
-      </Grid>
+        </Grid>
     </div>
   );
 }
