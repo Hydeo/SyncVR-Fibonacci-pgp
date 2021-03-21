@@ -7,7 +7,8 @@ import Grid from '@material-ui/core/Grid';
 
 import {getAllFiboEntires} from './services/fibonacci';
 import {FiboItem} from './components/fiboItem';
-import FiboEntryInterface from './models/fiboEntry';
+//We have to build an interface to please TS and avoid type issues
+import FiboEntryInterface from './models/fiboEntry'; 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,9 +22,11 @@ function App() {
   const [list, setList] = useState<any[]>([]);
   const classes = useStyles();
   
+  //We use the useEffect hook to call our service and fetch the existing entries
   useEffect(() => {
     getAllFiboEntires()
       .then(items => {
+          //Once the promise has resolved, we update the App component state with the gathered data 
           setList(items)
       })
   }, [])
