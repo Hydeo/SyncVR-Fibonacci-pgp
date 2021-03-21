@@ -1,11 +1,11 @@
 import {Response} from "express";
 import {db} from "./config/firebase";
 import * as functions from "firebase-functions";
+import {Fibonacci} from "./fibonacci";
 
 type FiboEntry = {
-  type : string,
-  result : number,
-  execTime : number
+  index : number,
+  memoization : boolean
 }
 
 type Request = {
@@ -14,15 +14,18 @@ type Request = {
 }
 
 const addFiboEntry = async (req : Request, res : Response) => {
-  const {type, result, execTime} = req.body;
+  const {index, memoization} = req.body;
   try {
+
+    //TODO : Add Tests 
+
+    let f = new Fibonacci(index,memoization);
+
+
     const entry = db.collection("fiboEntries").doc();
     const entryObject = {
       id: entry.id,
-      type,
-      result,
-      execTime,
-      creationDate: new Date(),
+      ...f
     };
 
     entry.set(entryObject);
