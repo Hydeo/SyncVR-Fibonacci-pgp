@@ -56,9 +56,7 @@ const getAllFiboEntries = async (req: Request, res: Response) =>{
     const allFiboEntries : Fibonacci[] = [];
     const query = await db.collection("fiboEntries").get();
     query.forEach((doc:any)=>{
-      functions.logger.log(doc.data());
       allFiboEntries.push(doc.data());
-
     });
     return res.status(200).json(allFiboEntries);
   } catch (error) {
