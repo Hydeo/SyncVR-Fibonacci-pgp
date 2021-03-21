@@ -17,6 +17,11 @@ export function postFiboEntry(item) {
 	   },
 	   body: JSON.stringify(item)
 	 })
-   	.then((data) => {return data.json()})
-   	.catch((error) => {return error.json()})
+   	.then((data) => {
+   		if(data.status != 200){
+   			throw new Error ();
+   		}
+   		return data.json()
+   	})
+   	.catch((error) => {return error})
 }
