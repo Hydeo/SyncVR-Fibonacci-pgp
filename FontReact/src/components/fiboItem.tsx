@@ -1,5 +1,5 @@
 import React from 'react';
-import FiboEntryInterface from '../models/fiboEntry';
+import FiboItemPropsInterface from '../models/fiboItemPropsInterface';
 
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const FiboItem = ({id,index,result,useMemoization,execTime}:FiboEntryInterface) =>{
+const FiboItem = ({id,index,result,useMemoization,execTime}:FiboItemPropsInterface) =>{
   const classes = useStyles();
   return (
     <Grid item xs={6} sm={2} key={id}>

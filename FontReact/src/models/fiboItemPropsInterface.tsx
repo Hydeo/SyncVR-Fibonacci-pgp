@@ -1,4 +1,4 @@
-export default interface FiboEntryInterface {
+export default interface FiboPropsInterface {
   id: string;
   index:number;
   result:number;

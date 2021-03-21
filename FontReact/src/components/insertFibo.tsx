@@ -1,6 +1,5 @@
 import React, { useState }from 'react';
 
-import FiboInsertInterface from '../models/fiboEntry';
 import {postFiboEntry} from '../services/fibonacciService';
 
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';

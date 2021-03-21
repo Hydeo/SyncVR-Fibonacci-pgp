@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 
 
 //We have to build an interface to please TS and avoid type issues
-import FiboEntryInterface from './models/fiboEntry'; 
+import FiboEntryInterface from './models/fiboItemPropsInterface'; 
 import {getAllFiboEntries} from './services/fibonacciService';
 import {FiboItem} from './components/fiboItem';
 import {InsertFibo} from './components/insertFibo';
