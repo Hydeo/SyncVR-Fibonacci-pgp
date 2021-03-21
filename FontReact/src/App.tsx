@@ -22,26 +22,28 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   
-  const [list, setList] = useState<any[]>([]);
+  const [fiboItems, setFiboItems] = useState<any[]>([]);
   const classes = useStyles();
-  
+  const pushFiboEntry = (newEntry) =>{
+    setFiboItems([...fiboItems,newEntry]);
+  }
   //We use the useEffect hook to call our service and fetch the existing entries
   useEffect(() => {
     getAllFiboEntries()
       .then(items => {
           //Once the promise has resolved, we update the App component state with the gathered data 
-          setList(items)
+          setFiboItems(items)
       })
   }, [])
 
-
+  
   return (
     <div className="App">
     <h1>SyncVR Assignement Paul Garcia Pelayo </h1>
       
-        <InsertFibo/>
+        <InsertFibo callback={pushFiboEntry}/>
         <Grid container spacing={3}>
-            {list.map((item: FiboEntryInterface,index)=>{
+            {fiboItems.map((item: FiboEntryInterface,index)=>{
               return <FiboItem {...item} key={index}/>
             })}
         </Grid>

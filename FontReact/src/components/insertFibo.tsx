@@ -69,16 +69,15 @@ const InsertFibo = (props) =>{
             .then((res)=>{
               setLoading(false);
               if(res.status != "sucess"){
-                 setError(res.message);
-              }
-              else{
                 if(res.hasOwnProperty("message")){
                   setError(res.message);
                 }
                 else{
                   setError("Couldn't Compute 🙍");
                 }
-                //call parent function to update the state holding the fiboItems
+              }
+              else{
+                props.callback(res.data);
               }
             })
             }
