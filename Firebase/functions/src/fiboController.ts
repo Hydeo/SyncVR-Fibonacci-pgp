@@ -47,7 +47,11 @@ const addFiboEntry = async (req : Request, res : Response) => {
   } catch (error) {
     // We enjoy it less
     functions.logger.log(error);
-    res.status(500).json(error.message);
+    res.status(500).send({
+      status: "failed",
+      message: error.message,
+      data: req.body,
+    });
   }
 };
 
