@@ -18,7 +18,7 @@ const addFiboEntry = async (req : Request, res : Response) => {
   try {
     // We check the body parameters are valid. The boolean should be checked in
     // higher level by typescript type enforcement.
-    if (!Number.isInteger(index)) {
+    if (!Number.isInteger(index) || index < 0) {
       throw new Error("Please provide a valid index");
     }
 
