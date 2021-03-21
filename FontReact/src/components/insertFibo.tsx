@@ -1,5 +1,7 @@
 import React, { useState }from 'react';
+
 import FiboInsertInterface from '../models/fiboEntry';
+import {postFiboEntry} from '../services/fibonacciService';
 
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -8,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const InsertFibo = () =>{
   const [index, setIndex] = useState(0);
   const [memoization, setMemoization] = useState(true);
+  const [error,setError] = useState("");
   const classes = useStyles();
 
 
@@ -33,12 +37,14 @@ const InsertFibo = () =>{
     <Grid item xs>
       <TextField
         id="standard-number"
-        label="Number"
+        label="Index"
         type="number"
         onChange={(event: React.ChangeEvent<HTMLInputElement>)=>{setIndex(Number(event.target.value))}}
         InputLabelProps={{
           shrink: true,
         }}
+        helperText={error}
+        error={error == "" ? false : true}
       />
 
       <FormControlLabel control={
@@ -54,6 +60,10 @@ const InsertFibo = () =>{
       <Button
         variant="contained"
         color="primary"
+        onClick={() => { 
+          postFiboEntry({index, memoization})
+          }
+        }
         className={classes.button}
       >
         Compute 🚀

@@ -18,12 +18,12 @@ const useStyles = makeStyles((theme: Theme) =>
 const FiboItem = ({id,index,result,useMemoization,execTime}:FiboEntryInterface) =>{
   const classes = useStyles();
   return (
-    <Grid item xs key={id}>
+    <Grid item xs={2} key={id}>
       <Paper className={classes.paper}>
-        <div>{index}</div>
-        <div>{result}</div>
-        <div>{useMemoization ? "Yes" : "No"}</div>
-        <div>{execTime}</div>
+        <div>Result : <b>{result}</b></div>
+        <div>Index : {index}</div>
+        <div>Memoization : {useMemoization ? "Yes" : "No"}</div>
+        <div>Time : {execTime.toFixed(5)}</div>
       </Paper>
     </Grid>
   );
