@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+//We have our interface here again
 const FiboItem = ({id,index,result,useMemoization,execTime,creationDate}:FiboItemPropsInterface) =>{
   const classes = useStyles();
   const date = (new Date(creationDate._seconds*1000)).toUTCString();

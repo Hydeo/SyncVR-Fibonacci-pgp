@@ -2,9 +2,11 @@ import React from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Legend} from 'recharts';
 import Grid from '@material-ui/core/Grid';
 
-
-
-const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400},{name: 'Page b', uv: 400, pv: 2400, amt: 2400},{name: 'Page A', uv: 500, pv: 2000, amt: 2000}];
+/*
+This component groups by generation type (Memoization or not) and then by Index, we calculated the avg exec time for each Index if we have sevral 
+data point for one index and then we squash all that together again to feed it to rechats.
+There is definitly some opti to do there, at least in clarity, with some map/reduce/filter correctly used.
+*/
 
 const FiboGraph = (props) =>{
   if(props.fiboItems.length == 0)
@@ -46,7 +48,6 @@ const FiboGraph = (props) =>{
   let avgFiboItemWithOutMemoization = getAverageExecTimeForIndexes(props.fiboItems.filter(i => !i.useMemoization),"WithOutMemoization");
 
   let frankeinFiboItem = Object.values(merge(avgFiboItemWithMemoization, avgFiboItemWithOutMemoization));
-  console.log(avgFiboItemWithMemoization);
 
   return(
     <Grid container style={{height:"20vw"}}>

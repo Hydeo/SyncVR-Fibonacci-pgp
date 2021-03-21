@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+//Front framework
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-
 
 //We have to build an interface to please TS and avoid type issues
 import FiboEntryInterface from './models/fiboItemPropsInterface'; 
