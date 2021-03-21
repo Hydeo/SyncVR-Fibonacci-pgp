@@ -62,6 +62,15 @@ const InsertFibo = () =>{
         color="primary"
         onClick={() => { 
           postFiboEntry({index, memoization})
+          .then((res)=>{
+            if(res.status != "sucess"){
+               setError(res.message);
+            }
+            else{
+              setError("");
+              //call parent function to update the state holding the fiboItems
+            }
+          })
           }
         }
         className={classes.button}

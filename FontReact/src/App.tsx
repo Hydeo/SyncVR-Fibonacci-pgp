@@ -43,7 +43,7 @@ function App() {
       </Grid>
       <Grid container spacing={3}>
             {list.map((item: FiboEntryInterface,index)=>{
-              return <FiboItem {...item}/>
+              return <FiboItem {...item} key={index}/>
             })}
       </Grid>
     </div>
