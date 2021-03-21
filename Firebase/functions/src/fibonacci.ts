@@ -14,7 +14,7 @@ class Fibonacci {
   	//TODO : Check if number is float
     this.index = index;
     this.useMemoization = useMemoization;
-    this.memoizationArray = [];
+    this.memoizationArray = [0,1];
     this.creationDate = new Date();
     const t0 = performance.now();
     this.result = this.compute(this.index);
@@ -40,18 +40,21 @@ class Fibonacci {
   }
 
   compute(index:number) : number{
-
   	if(index < 2){
   		return index;
   	}
-
   	/*If we are using memoization and have already computed the current 
   	index, we return it to avoid unecessary calculations */
   	if(this.useMemoization && this.memoizationArray.includes(index)){
   		return this.memoizationArray[index];
   	}
 
-  	return this.compute(index-1) + this.compute(index-2);
+  	let res = this.compute(index-1) + this.compute(index-2);
+  	if(this.useMemoization){
+  		this.memoizationArray[index] = res;
+  		return this.memoizationArray[index];
+  	}
+  	return res;
   }
 }
 
