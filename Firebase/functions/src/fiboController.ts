@@ -17,25 +17,36 @@ const addFiboEntry = async (req : Request, res : Response) => {
   const {index, memoization} = req.body;
   try {
 
-    //TODO : Add Tests 
+    // We check the body parameters are valid. The boolean should be checked in  
+    // higher level by typescript type enforcement.
+    if(!Number.isInteger(index)){
+      throw "Please provide a valid index"; 
+    }
 
+    //We compute the fibonacci sequence for the given parameters
     let f = new Fibonacci(index,memoization);
 
-
+    //Get an id for the new entry
     const entry = db.collection("fiboEntries").doc();
+    //We create the object we want to store
     const entryObject = {
       id: entry.id,
-      ...f
+      index: f.getIndex(),
+      result : f.getResult(),
+      useMemoization : f.isUsingMemoization(),
+      execTime : f.getExecTime(),
+      creationDate : f.getCreationDate()
     };
-
+    //We store it
     entry.set(entryObject);
 
+    //We enjoy it 
     res.status(200).send({
       status: "sucess",
-      message: "Entry add ok",
       data: entryObject,
     });
   } catch (error) {
+    //We enjoy it less
     functions.logger.log(error);
     res.status(500).json(error.message);
   }
