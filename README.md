@@ -7,6 +7,8 @@ API Url : https://us-central1-syncvr-fibonacci-pgp.cloudfunctions.net/app/
 
 Front Url : https://syncvr-fibonacci-pgp.web.app/index.js
 
+Note : The result of the Fibonaci sequence is appened at the bottom of the page after clicking on "compute".
+
 ## Requirements 
 This exercice is based on the Fibonacci Sequence. The objectives are : 
 - Provide a REST endpoint allowing to GET the N-th element in the sequence and save this query in a history. 
